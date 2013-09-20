@@ -54,9 +54,10 @@ namespace CardapioWP7
         /// Funcao auxiliar para quebrar a informação baixada do site para algo legível no app.
         /// </summary>
         /// <param name="_info">Html tag com as informações</param>
-        public void ProcessInfo(string _info)
+        public void ProcessInfo()
         {
-            
+            ProcessHelper ph = new ProcessHelper();
+            ph.ProcessInfo(this.Info, this.Periodo);
         }
 
     }
