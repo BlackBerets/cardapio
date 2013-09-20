@@ -15,32 +15,32 @@ namespace CardapioWP7
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        public WebUpdater updater { get; private set; }
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
 
+            updater = new WebUpdater(this);
+
             // Set the data context of the listbox control to the sample data
-            DataContext = App.ViewModel;
+            //DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+
         }
 
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
-            if (AntesDoAlmoco())
-            {
-                Jantar.Visibility = System.Windows.Visibility.Collapsed;
-            }
-            else
-            {
-                Almoco.Visibility = Visibility.Collapsed;
-            }
+            //if (!App.ViewModel.IsDataLoaded)
+            //{
+            //    App.ViewModel.LoadData();
+            //}
 			StoryboardIn.Begin();
+
+            updater.GetUpdates();
+            
         }
 
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
@@ -54,24 +54,6 @@ namespace CardapioWP7
         	NavigationService.Navigate(new Uri("/Sobre.xaml", UriKind.Relative));
         }
 
-        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            if (Jantar.Visibility == System.Windows.Visibility.Collapsed)
-            {
-                HideAlmoco.Begin();
-                ShowJantar.Begin();
-            }
-        }
-
-        private void TextBlock_Tap_1(object sender, GestureEventArgs e)
-        {
-            if (Almoco.Visibility == Visibility.Collapsed)
-            {
-                HideJantar.Begin();
-                ShowAlmoco.Begin();
-            }
-        }
-
         private bool AntesDoAlmoco()
         {
             bool manha = DateTime.Now.TimeOfDay < new DateTime(2000, 1, 1, 14, 0, 0).TimeOfDay;
@@ -79,5 +61,16 @@ namespace CardapioWP7
             return manha || noite;
                 
         }
+
+        /// <summary>
+        /// Funcao auxiliar para facilitar a apresentação de mensagens de alerta nessa página
+        /// </summary>
+        /// <param name="msg">Mensagem a ser mostrada</param>
+        public void Alert(string msg)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(msg));
+        }
+
+        
     }
 }

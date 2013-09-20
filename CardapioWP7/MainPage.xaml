@@ -168,76 +168,7 @@
 			<controls:Pivot.RenderTransform>
 				<CompositeTransform/>
 			</controls:Pivot.RenderTransform>
-			<!--Pivot item one-->
-			<controls:PivotItem Header="Segunda" Margin="0,28,0,0" Foreground="Black">
-                <!--Double line list with text wrapping-->
-                <StackPanel Background="Transparent">
-                    <StackPanel>
-                        <StackPanel Margin="12,0" Tap="TextBlock_Tap_1">
-                            <TextBlock Text="Almoço" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Foreground="Black" Margin="12,0"/>
-                            <TextBlock Text="Horário: 11h às 13h30" Margin="12,0" Foreground="Black"/>
-                            <TextBlock x:Name="Almoco" Margin="12,20,12,0" TextWrapping="Wrap" Foreground="Black">
-                            	<TextBlock.RenderTransform>
-                            		<CompositeTransform/>
-                            	</TextBlock.RenderTransform>
-								<Run Text="Legumes refogados "/>
-								<LineBreak/>
-								<Run Text="Bife com queijo "/>
-								<LineBreak/>
-								<Run Text="Feijão carioca "/>
-								<LineBreak/>
-								<Run Text="Arroz colorido"/>
-								<LineBreak/>
-								<Run Text="Farofa carioca"/>
-								<LineBreak/>
-								<Run Text="Suco "/>
-								<LineBreak/>
-								<Run Text="Sobremesa "/>
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel Margin="12,28,12,0" Tap="TextBlock_Tap">
-                            <TextBlock Text="Jantar" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Foreground="Black" Margin="12,0" />
-                            <TextBlock Text="Horário: 17h às 19h" Foreground="Black" Margin="12,0"/>
-                            <TextBlock x:Name="Jantar" Margin="12,20,12,0" TextWrapping="Wrap" Foreground="Black" RenderTransformOrigin="0.5,0.5">
-                                <TextBlock.RenderTransform>
-                                    <CompositeTransform/>
-                                </TextBlock.RenderTransform>
-                                <TextBlock.Projection>
-                                    <PlaneProjection/>
-                                </TextBlock.Projection>
-								<Run Text="Legumes refogados "/>
-								<LineBreak/>
-								<Run Text="Bife com queijo "/>
-								<LineBreak/>
-								<Run Text="Feijão carioca "/>
-								<LineBreak/>
-								<Run Text="Arroz colorido "/>
-								<LineBreak/>
-								<Run Text="Farofa carioca"/>
-								<LineBreak/>
-								<Run Text="Suco "/>
-								<LineBreak/>
-								<Run Text="Sobremesa "/>
-                            </TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </controls:PivotItem>
-
-			<!--Pivot item two-->
-			<controls:PivotItem Header="Terça">
-                <!--Triple line list no text wrapping-->
-				<ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Margin="0,0,0,17">
-								<TextBlock Text="{Binding LineOne}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-								<TextBlock Text="{Binding LineThree}" TextWrapping="NoWrap" Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-							</StackPanel>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</controls:PivotItem>
+			
 		</controls:Pivot>
 	</Grid>
 
