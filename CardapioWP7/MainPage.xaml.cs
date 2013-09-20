@@ -81,8 +81,28 @@ namespace CardapioWP7
             foreach (var Dia in ph.Semana)
             {
                 PivotItem aba = new PivotItem();
-                aba.Header = Dia.DayOfWeek;
+                aba.Header = Dia.Data.DayOfWeek;
+
+                ScrollViewer sv_dia = new ScrollViewer();
+                ListBox lb_refeicoes = new ListBox();
+                
+                ListBoxItem almoco = new ListBoxItem();
+                almoco.Content = Dia.Almoco;
+                lb_refeicoes.Items.Add(almoco);
+
+                ListBoxItem jantar = new ListBoxItem();
+                jantar.Content = Dia.Jantar;
+                lb_refeicoes.Items.Add(jantar);
+
+                sv_dia.Content = lb_refeicoes;
+                
+                aba.Style = (Style)App.Current.Resources["AbaDiaDaSemana"];
+                aba.Content = sv_dia;
+                lb_refeicoes.Foreground = aba.Foreground;
                 pivot.Items.Add(aba);
+
+                if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)
+                    pivot.SelectedItem = aba;
             }
         }
     }

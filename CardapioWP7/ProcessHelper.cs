@@ -8,11 +8,11 @@ namespace CardapioWP7
 {
     class ProcessHelper
     {
-        public List<DateTime> Semana { get; private set; }
+        public List<Dia> Semana { get; private set; }
 
         public ProcessHelper()
         {
-            Semana = new List<DateTime>();
+            Semana = new List<Dia>();
         }
 
         public void ProcessInfo(string _info, string _periodo)
@@ -175,7 +175,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             ProcessDias(_periodo);
 
-            
+            ProcessPratos(_info);            
         }
 
         private void ProcessDias(string _periodo)
@@ -186,18 +186,65 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             var datas = regex_datas.Matches(Periodo);
             int dia_inicial = int.Parse(datas[0].ToString());
             int mes_inicial = int.Parse(datas[1].ToString());
-            int dia_final = int.Parse(datas[2].ToString());
-            int mes_final = int.Parse(datas[3].ToString());
 
             DateTime inicio = new DateTime(DateTime.Today.Year, mes_inicial, dia_inicial);
-            DateTime fim = new DateTime(DateTime.Today.Year, mes_final, dia_final);
 
-            for (int i = 0; true; i++)
+            for (int i = 0; i < 6; i++)
             {
-                DateTime dia = inicio.AddDays(i);
+                Dia dia = new Dia(inicio.AddDays(i));
                 Semana.Add(dia);
-                if (dia.CompareTo(fim) == 0)
-                    break;
+            }
+        }
+
+
+        enum Refeicao
+        {
+            Almoco,
+            Jantar,
+            Desjejum,
+            None
+        }
+
+        private void ProcessPratos(string _info)
+        {
+            string Info = _info;
+
+            Regex almoco = new Regex(@"ALMO&Ccedil;O");
+            Regex jantar = new Regex(@"JANTAR");
+
+            Refeicao refeicao = Refeicao.None;
+
+            int dia = -1;
+            StringBuilder sb_almoco = new StringBuilder();
+            StringBuilder sb_jantar = new StringBuilder();
+
+            foreach (var line in Info.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (almoco.IsMatch(line))
+                {
+                    if (0 <= dia)
+                    {
+                        Semana[dia].Almoco = sb_almoco.ToString();
+                        Semana[dia].Jantar = sb_jantar.ToString();
+                    }
+                    dia++;
+                    refeicao = Refeicao.Almoco;
+                }
+                else if (jantar.IsMatch(line))
+                {
+                    refeicao = Refeicao.Jantar;                    
+                }
+                else
+                {
+                    if (line.Trim().Length != 0)
+                    {
+                        if (refeicao == Refeicao.Almoco)
+                            sb_almoco.AppendLine(line);
+                        if (refeicao == Refeicao.Jantar)
+                            sb_jantar.AppendLine(line);
+                    }
+                }
+
             }
         }
     }

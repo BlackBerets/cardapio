@@ -41,8 +41,13 @@ namespace CardapioWP7
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(e.Result);
 
-                this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerText;
                 this.Periodo = doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].InnerHtml;
+
+                doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style2']")[0].Remove();
+                doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].Remove();
+
+                this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerText;
+                
                 this.ParentPage.LoadInfo();
             }
             else
