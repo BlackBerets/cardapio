@@ -10,6 +10,11 @@ namespace CardapioWP7
     {
         public List<DateTime> Semana { get; private set; }
 
+        public ProcessHelper()
+        {
+            Semana = new List<DateTime>();
+        }
+
         public void ProcessInfo(string _info, string _periodo)
         {
             #region Exemplo de Entrada
@@ -168,6 +173,13 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
              */
             #endregion
 
+            ProcessDias(_periodo);
+
+            
+        }
+
+        private void ProcessDias(string _periodo)
+        {
             string Periodo = _periodo;
 
             Regex regex_datas = new Regex(@"\d+");

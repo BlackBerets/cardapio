@@ -12,8 +12,9 @@ namespace CardapioWP7
     public class WebUpdater
     {
         public string Info {get; private set;}
+        public string Periodo { get; private set; }
         private MainPage ParentPage;
-        private string Periodo;
+        
 
         /// <summary>
         /// Construtor da Classe. Recebe a página pai para poder chamar funções de maneira assíncrona
@@ -42,6 +43,7 @@ namespace CardapioWP7
 
                 this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerText;
                 this.Periodo = doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].InnerHtml;
+                this.ParentPage.LoadInfo();
             }
             else
             {

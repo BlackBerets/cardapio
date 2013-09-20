@@ -71,6 +71,19 @@ namespace CardapioWP7
             Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(msg));
         }
 
-        
+
+
+        internal void LoadInfo()
+        {
+            ProcessHelper ph = new ProcessHelper();
+            ph.ProcessInfo(updater.Info, updater.Periodo);
+
+            foreach (var Dia in ph.Semana)
+            {
+                PivotItem aba = new PivotItem();
+                aba.Header = Dia.DayOfWeek;
+                pivot.Items.Add(aba);
+            }
+        }
     }
 }
