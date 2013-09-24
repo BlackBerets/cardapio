@@ -46,7 +46,7 @@ namespace CardapioWP7
                 doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style2']")[0].Remove();
                 doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].Remove();
 
-                this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerText;
+                this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerHtml;
                 
                 this.ParentPage.LoadInfo();
             }

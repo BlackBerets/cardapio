@@ -84,21 +84,33 @@ namespace CardapioWP7
                 aba.Header = Dia.Data.DayOfWeek;
 
                 ScrollViewer sv_dia = new ScrollViewer();
-                ListBox lb_refeicoes = new ListBox();
-                
-                ListBoxItem almoco = new ListBoxItem();
-                almoco.Content = Dia.Almoco;
-                lb_refeicoes.Items.Add(almoco);
 
-                ListBoxItem jantar = new ListBoxItem();
-                jantar.Content = Dia.Jantar;
-                lb_refeicoes.Items.Add(jantar);
+                StackPanel stack_refeicoes = new StackPanel();
+                sv_dia.Content = stack_refeicoes;
 
-                sv_dia.Content = lb_refeicoes;
-                
+                TextBlock title_almoco = new TextBlock();
+                title_almoco.Text = "Almoço";
+                title_almoco.FontSize = 32;
+                stack_refeicoes.Children.Add(title_almoco);
+
+                TextBlock almoco = new TextBlock();
+                almoco.Text = Dia.Almoco;
+                stack_refeicoes.Children.Add(almoco);
+
+                TextBlock title_jantar = new TextBlock();
+                title_jantar.Text = "Jantar";
+                title_jantar.FontSize = 32;
+                stack_refeicoes.Children.Add(title_jantar);
+
+                TextBlock jantar = new TextBlock();
+                jantar.Text = Dia.Jantar;
+                stack_refeicoes.Children.Add(jantar);
+
+               
                 aba.Style = (Style)App.Current.Resources["AbaDiaDaSemana"];
                 aba.Content = sv_dia;
-                lb_refeicoes.Foreground = aba.Foreground;
+
+
                 pivot.Items.Add(aba);
 
                 if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)

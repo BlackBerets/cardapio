@@ -211,12 +211,14 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             Regex almoco = new Regex(@"ALMO&Ccedil;O");
             Regex jantar = new Regex(@"JANTAR");
+            Regex prato = new Regex(@"^(-\s)?(?<prato>([A-Za-z&;]+\s?)+)<br\s*?\/?>");
 
-            Refeicao refeicao = Refeicao.None;
+            
 
             int dia = -1;
             StringBuilder sb_almoco = new StringBuilder();
             StringBuilder sb_jantar = new StringBuilder();
+            StringBuilder sb_atual = null;
 
             foreach (var line in Info.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries))
             {
@@ -225,27 +227,68 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
                     if (0 <= dia)
                     {
                         Semana[dia].Almoco = sb_almoco.ToString();
+                        sb_almoco = new StringBuilder();
                         Semana[dia].Jantar = sb_jantar.ToString();
+                        sb_jantar = new StringBuilder();
                     }
                     dia++;
-                    refeicao = Refeicao.Almoco;
+                    sb_atual = sb_almoco;
                 }
                 else if (jantar.IsMatch(line))
                 {
-                    refeicao = Refeicao.Jantar;                    
+                    sb_atual = sb_jantar;
                 }
                 else
                 {
-                    if (line.Trim().Length != 0)
+                    if (!String.IsNullOrWhiteSpace(line))
                     {
-                        if (refeicao == Refeicao.Almoco)
-                            sb_almoco.AppendLine(line);
-                        if (refeicao == Refeicao.Jantar)
-                            sb_jantar.AppendLine(line);
+                        string linha_prato = prato.Match(line).Groups["prato"].ToString();
+
+                        if (!String.IsNullOrWhiteSpace(linha_prato))
+                        {
+                            ReplaceHTML(ref linha_prato);
+
+                            sb_atual.AppendLine(linha_prato);
+                        }
                     }
                 }
 
             }
+        }
+
+        private void ReplaceHTML(ref string html)
+        {
+            // Letra A
+            html = html.Replace("&atilde;", "ã");
+            html = html.Replace("&aacute;", "á");
+            html = html.Replace("&acirc;", "â");
+            html = html.Replace("&agrave;", "à");
+            html = html.Replace("&Atilde;", "Ã");
+            html = html.Replace("&Aacute;", "Á");
+            html = html.Replace("&Acirc;", "Â");
+            html = html.Replace("&Agrave;", "À");
+
+            // Letra E
+            html = html.Replace("&eacute;", "é");
+            html = html.Replace("&ecirc;", "ê");
+            html = html.Replace("&Eacute;", "É");
+            html = html.Replace("&Ecirc;", "Ê");
+
+            // Letra I
+            html = html.Replace("&Iacute;", "í");
+            html = html.Replace("&Iacute;", "Í");
+
+            // Letra O
+            html = html.Replace("&otilde;", "õ");
+            html = html.Replace("&oacute;", "ó");
+            html = html.Replace("&ocirc;", "ô");
+            html = html.Replace("&Otilde;", "Õ");
+            html = html.Replace("&Oacute;", "Ó");
+            html = html.Replace("&Ocirc;", "Ô");
+
+            // Letra C
+            html = html.Replace("&ccedil;", "ç");
+            html = html.Replace("&Ccedil;", "Ç");
         }
     }
 }
