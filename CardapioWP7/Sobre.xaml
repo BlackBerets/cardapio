@@ -28,20 +28,42 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-        	<Grid.RowDefinitions>
-        		<RowDefinition Height="82*"/>
-        		<RowDefinition Height="525*"/>
-        	</Grid.RowDefinitions>
-        	<TextBlock Name="Versao" Margin="12" TextWrapping="Wrap" Text="" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center">
-        		<TextBlock.Foreground>
-        			<SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
-        		</TextBlock.Foreground>
-        	</TextBlock>
-        	<TextBox Margin="12" Grid.Row="1" TextWrapping="Wrap" Text="Desenvolvido por Black Beret Software&#xD;&#xA;&#xD;&#xA;Licensiado sob a licença GPL 3.0&#xD;&#xA;&#xD;&#xA;O código-fonte pode ser encontrado aqui:&#xD;&#xA;http://github.com/blackberets/calendario&#xD;&#xA;&#xD;&#xA;As informações do cardápio são retiradas da seguinte página:&#xD;&#xA;&#xD;&#xA;http://sae.ufrn.br/conteudo/servicos/ru/cardapio.php&#xD;&#xA;&#xD;&#xA;Mesmo sendo de uma fonte oficial, os pratos servidos podem sofrer alterações sem aviso prévio.&#xD;&#xA;" Background="Transparent" BorderThickness="0" FontSize="{StaticResource PhoneFontSizeNormal}">
-        		<TextBox.Foreground>
-        			<SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
-        		</TextBox.Foreground>
-        	</TextBox>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="82*"/>
+                <RowDefinition Height="525*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="Versao" Margin="12" TextWrapping="Wrap" Text="" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock Margin="12,0" Grid.Row="1" TextWrapping="Wrap">
+            	<Run Text="Desenvolvido por Black Beret Software"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="Licensiado sob a licença GPL 3.0"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="O código-fonte pode ser encontrado aqui:"/>
+            	<LineBreak/>
+            	<Run Text="http://github.com/blackberets/calendario"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="As informações do cardápio são retiradas da seguinte página:"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="http://sae.ufrn.br/conteudo/servicos/ru/cardapio.php"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="Mesmo sendo de uma fonte oficial, os pratos servidos podem sofrer alterações sem aviso prévio."/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
         </Grid>
     </Grid>
 

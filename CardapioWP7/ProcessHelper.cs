@@ -211,7 +211,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             Regex almoco = new Regex(@"ALMO&Ccedil;O");
             Regex jantar = new Regex(@"JANTAR");
-            Regex prato = new Regex(@"^(-\s)?(?<prato>([A-Za-z&;]+\s?)+)<br\s*?\/?>");
+            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;]+\s?)+)<br\s*?\/?>");
 
             
 

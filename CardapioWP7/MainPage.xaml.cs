@@ -28,6 +28,8 @@ namespace CardapioWP7
             //DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
+            
+
         }
 
         // Load data for the ViewModel Items
@@ -81,7 +83,7 @@ namespace CardapioWP7
             foreach (var Dia in ph.Semana)
             {
                 PivotItem aba = new PivotItem();
-                aba.Header = Dia.Data.DayOfWeek;
+                aba.Header = Dia.NomeDoDia();
 
                 ScrollViewer sv_dia = new ScrollViewer();
 
