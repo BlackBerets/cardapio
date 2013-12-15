@@ -189,7 +189,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             DateTime inicio = new DateTime(DateTime.Today.Year, mes_inicial, dia_inicial);
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Dia dia = new Dia(inicio.AddDays(i));
                 Semana.Add(dia);
@@ -211,7 +211,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             Regex almoco = new Regex(@"ALMO&Ccedil;O");
             Regex jantar = new Regex(@"JANTAR");
-            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;]+\s?)+)<br\s*?\/?>");
+            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;]+\s?)+)");
 
             
 
@@ -220,7 +220,9 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             StringBuilder sb_jantar = new StringBuilder();
             StringBuilder sb_atual = null;
 
-            foreach (var line in Info.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries))
+            var lines = Info.Split(new string[] { Environment.NewLine, "<br>"}, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var line in lines)
             {
                 if (almoco.IsMatch(line))
                 {
@@ -240,8 +242,6 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
                 }
                 else
                 {
-                    if (!String.IsNullOrWhiteSpace(line))
-                    {
                         string linha_prato = prato.Match(line).Groups["prato"].ToString();
 
                         if (!String.IsNullOrWhiteSpace(linha_prato))
@@ -250,10 +250,12 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
                             sb_atual.AppendLine(linha_prato);
                         }
-                    }
                 }
 
             }
+
+            Semana[dia].Almoco = sb_almoco.ToString();
+            Semana[dia].Jantar = sb_jantar.ToString();
         }
 
         private void ReplaceHTML(ref string html)

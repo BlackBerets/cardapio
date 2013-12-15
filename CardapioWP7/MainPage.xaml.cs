@@ -23,9 +23,6 @@ namespace CardapioWP7
             InitializeComponent();
 
             updater = new WebUpdater(this);
-
-            // Set the data context of the listbox control to the sample data
-            //DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
             
@@ -35,14 +32,9 @@ namespace CardapioWP7
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //if (!App.ViewModel.IsDataLoaded)
-            //{
-            //    App.ViewModel.LoadData();
-            //}
 			StoryboardIn.Begin();
 
-            updater.GetUpdates();
-            
+                updater.GetUpdates();
         }
 
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
@@ -89,6 +81,11 @@ namespace CardapioWP7
 
                 StackPanel stack_refeicoes = new StackPanel();
                 sv_dia.Content = stack_refeicoes;
+
+                TextBlock data = new TextBlock();
+                data.Text = string.Format("Dia {0}/{1}", Dia.Data.Day, Dia.Data.Month);
+                //data.FontSize = 12;
+                stack_refeicoes.Children.Add(data);
 
                 TextBlock title_almoco = new TextBlock();
                 title_almoco.Text = "Almoço";

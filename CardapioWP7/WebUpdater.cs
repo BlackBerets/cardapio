@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace CardapioWP7
 {
@@ -11,10 +13,10 @@ namespace CardapioWP7
     /// </summary>
     public class WebUpdater
     {
-        public string Info {get; private set;}
+        public string Info { get; private set; }
         public string Periodo { get; private set; }
         private MainPage ParentPage;
-        
+
 
         /// <summary>
         /// Construtor da Classe. Recebe a página pai para poder chamar funções de maneira assíncrona
@@ -47,12 +49,20 @@ namespace CardapioWP7
                 doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].Remove();
 
                 this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerHtml;
-                
+
+                this.SaveToIsolatedStorage();
+
                 this.ParentPage.LoadInfo();
             }
             else
             {
-                ParentPage.Alert(e.Error.Message);
+                this.Load();
+                if (string.IsNullOrEmpty(this.Info) || string.IsNullOrEmpty(this.Periodo))
+                    ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
+                else
+                {
+                    this.ParentPage.LoadInfo();
+                }
             }
 
         }
@@ -67,5 +77,28 @@ namespace CardapioWP7
             ph.ProcessInfo(this.Info, this.Periodo);
         }
 
+        public void SaveToIsolatedStorage()
+        {
+            using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (StreamWriter PratosWriter = new StreamWriter(new IsolatedStorageFileStream("files\\pratos.txt", FileMode.Truncate, Storage)))
+                    PratosWriter.Write(this.Info);
+
+                using (StreamWriter PeriodoWriter = new StreamWriter(new IsolatedStorageFileStream("files\\periodo.txt", FileMode.Truncate, Storage)))
+                    PeriodoWriter.Write(this.Periodo);
+            }
+        }
+
+
+        internal void Load()
+        {
+            using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (StreamReader PratosReader = new StreamReader(new IsolatedStorageFileStream("files\\pratos.txt", FileMode.OpenOrCreate, Storage)))
+                    this.Info = PratosReader.ReadToEnd();
+                using (StreamReader PeriodoReader = new StreamReader(new IsolatedStorageFileStream("files\\periodo.txt", FileMode.OpenOrCreate, Storage)))
+                    this.Periodo = PeriodoReader.ReadToEnd();
+            }
+        }
     }
 }
