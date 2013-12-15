@@ -81,10 +81,10 @@ namespace CardapioWP7
         {
             using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (StreamWriter PratosWriter = new StreamWriter(new IsolatedStorageFileStream("files\\pratos.txt", FileMode.Truncate, Storage)))
+                using (StreamWriter PratosWriter = new StreamWriter(new IsolatedStorageFileStream("pratos.txt", FileMode.OpenOrCreate, Storage)))
                     PratosWriter.Write(this.Info);
 
-                using (StreamWriter PeriodoWriter = new StreamWriter(new IsolatedStorageFileStream("files\\periodo.txt", FileMode.Truncate, Storage)))
+                using (StreamWriter PeriodoWriter = new StreamWriter(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
                     PeriodoWriter.Write(this.Periodo);
             }
         }
@@ -94,9 +94,9 @@ namespace CardapioWP7
         {
             using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (StreamReader PratosReader = new StreamReader(new IsolatedStorageFileStream("files\\pratos.txt", FileMode.OpenOrCreate, Storage)))
+                using (StreamReader PratosReader = new StreamReader(new IsolatedStorageFileStream("pratos.txt", FileMode.OpenOrCreate, Storage)))
                     this.Info = PratosReader.ReadToEnd();
-                using (StreamReader PeriodoReader = new StreamReader(new IsolatedStorageFileStream("files\\periodo.txt", FileMode.OpenOrCreate, Storage)))
+                using (StreamReader PeriodoReader = new StreamReader(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
                     this.Periodo = PeriodoReader.ReadToEnd();
             }
         }
