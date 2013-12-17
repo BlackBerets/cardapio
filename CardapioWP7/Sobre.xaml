@@ -25,46 +25,22 @@
             <TextBlock Text="Cardápio Universitário UFRN" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#DEFFFFFF"/>
             <TextBlock Text="sobre" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#DEFFFFFF"/>
         </StackPanel>
+        <StackPanel VerticalAlignment="Top" Grid.Row="1" Margin="12,0">
+        	<TextBlock x:Name="Versao" Margin="0,0,-332,0" TextWrapping="Wrap" Text="" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="0,12" TextWrapping="Wrap" Text="Desenvolvido por Black Beret Software"/>
+        	<TextBlock TextWrapping="Wrap" Text="Licenciado sob a licença GPL 3.0" Margin="0,12"/>
+        	<TextBlock TextWrapping="Wrap" Text="O código-fonte pode ser encontrado aqui:" Margin="0,12"/>
+        	<HyperlinkButton Content="http://github.com/blackberets/calendario" NavigateUri="http://github.com/blackberets/calendario" FontSize="20" HorizontalAlignment="Left"/>
+        	<TextBlock TextWrapping="Wrap" Text="As informações do cardápio são retiradas da seguinte página:" Margin="0,12"/>
+        	<HyperlinkButton Content="http://sae.ufrn.br/" NavigateUri="http://sae.ufrn.br/conteudo/servicos/ru/cardapio.php" FontSize="20" HorizontalAlignment="Left"/>
+        	<TextBlock TextWrapping="Wrap" Text="Mesmo sendo de uma fonte oficial, os pratos servidos podem sofrer alterações sem aviso prévio." Margin="0,12"/>
+        </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="82*"/>
-                <RowDefinition Height="525*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Name="Versao" Margin="12" TextWrapping="Wrap" Text="" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center">
-                <TextBlock.Foreground>
-                    <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
-                </TextBlock.Foreground>
-            </TextBlock>
-            <TextBlock Margin="12,0" Grid.Row="1" TextWrapping="Wrap">
-            	<Run Text="Desenvolvido por Black Beret Software"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Licensiado sob a licença GPL 3.0"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="O código-fonte pode ser encontrado aqui:"/>
-            	<LineBreak/>
-            	<Run Text="http://github.com/blackberets/calendario"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="As informações do cardápio são retiradas da seguinte página:"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="http://sae.ufrn.br/conteudo/servicos/ru/cardapio.php"/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Mesmo sendo de uma fonte oficial, os pratos servidos podem sofrer alterações sem aviso prévio."/>
-            	<LineBreak/>
-            	<Run/>
-            </TextBlock>
-        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

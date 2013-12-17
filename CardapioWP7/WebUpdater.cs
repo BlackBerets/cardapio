@@ -77,6 +77,9 @@ namespace CardapioWP7
             ph.ProcessInfo(this.Info, this.Periodo);
         }
 
+        /// <summary>
+        /// Metodo auxiliar que salva os dados em disco
+        /// </summary>
         public void SaveToIsolatedStorage()
         {
             using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
@@ -89,8 +92,10 @@ namespace CardapioWP7
             }
         }
 
-
-        internal void Load()
+        /// <summary>
+        /// Metodo auxiliar que carrega os dados salvos em disco
+        /// </summary>
+        public void Load()
         {
             using (IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
