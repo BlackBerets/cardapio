@@ -50,20 +50,14 @@ namespace CardapioWP7
 
                 this.Info = doc.DocumentNode.SelectNodes("//td[@class='verdana11']")[0].InnerHtml;
 
-                this.SaveToIsolatedStorage();
-
                 this.ParentPage.LoadInfo();
+
+                this.SaveToIsolatedStorage();
             }
             else
-            {
-                this.Load();
-                if (string.IsNullOrEmpty(this.Info) || string.IsNullOrEmpty(this.Periodo))
-                    ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
-                else
-                {
-                    this.ParentPage.LoadInfo();
-                }
-            }
+                ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
+
+
 
         }
 
@@ -104,6 +98,11 @@ namespace CardapioWP7
                 using (StreamReader PeriodoReader = new StreamReader(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
                     this.Periodo = PeriodoReader.ReadToEnd();
             }
+
+            if (string.IsNullOrEmpty(this.Info) || string.IsNullOrEmpty(this.Periodo))
+                ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
+            else
+                this.ParentPage.LoadInfo();
         }
     }
 }

@@ -23,16 +23,16 @@ namespace CardapioWP7
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-        	var wbt = new WebBrowserTask();
-wbt.URL = "https://github.com/BlackBerets/Cardapio";
-wbt.Show();
+            var wbt = new WebBrowserTask();
+            wbt.Uri = new Uri("https://github.com/BlackBerets/Cardapio");
+            wbt.Show();
         }
 
         private void SaeLink_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-        	var wbt = new WebBrowserTask();
-wbt.URL = "http://www.sae.ufrn.br/conteudo/servicos/ru/cardapio.php";
-wbt.Show();
+            var wbt = new WebBrowserTask();
+            wbt.Uri = new Uri("http://www.sae.ufrn.br/conteudo/servicos/ru/cardapio.php");
+            wbt.Show();
         }
     }
 }
