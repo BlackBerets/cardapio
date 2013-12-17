@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using System.Reflection;
 
 namespace CardapioWP7
@@ -20,8 +21,18 @@ namespace CardapioWP7
             Versao.Text = "Versão " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+        	var wbt = new WebBrowserTask();
+wbt.URL = "https://github.com/BlackBerets/Cardapio";
+wbt.Show();
+        }
+
+        private void SaeLink_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        	var wbt = new WebBrowserTask();
+wbt.URL = "http://www.sae.ufrn.br/conteudo/servicos/ru/cardapio.php";
+wbt.Show();
         }
     }
 }
