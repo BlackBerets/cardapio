@@ -1,22 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{4bcd74b3-b472-45ce-9fea-379e71687935}" Title="Cardápio UFRN" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="CardapioWP7 author" Description="Cardápio diário do Restaurante Universitário da UFRN" Publisher="CardapioWP7">
+  <App xmlns="" ProductID="{4bcd74b3-b472-45ce-9fea-379e71687935}" Title="Cardápio R.U." RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Thiago Abreu" Description="Cardápio do Restaurante Universitário da UFRN.&#xD;&#xA;&#xD;&#xA;Acesse offline quais os pratos da semana no R.U." Publisher="Black Berets Software">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_GAMERSERVICES" />
-      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
-      <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_LOCATION" />
-      <Capability Name="ID_CAP_MEDIALIB" />
-      <Capability Name="ID_CAP_MICROPHONE" />
-      <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
-      <Capability Name="ID_CAP_ISV_CAMERA" />
-      <Capability Name="ID_CAP_CONTACTS" />
-      <Capability Name="ID_CAP_APPOINTMENTS" />
+      <Capability Name="ID_CAP_NETWORKING" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />

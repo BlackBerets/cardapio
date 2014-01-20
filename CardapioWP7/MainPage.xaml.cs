@@ -30,6 +30,7 @@ namespace CardapioWP7
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
             Pontinhos = new ProgressIndicator();
+            Pontinhos.Text = "Carregando...";
             Pontinhos.IsIndeterminate = true;
             SystemTray.SetProgressIndicator(this, Pontinhos);
         }
@@ -45,7 +46,13 @@ namespace CardapioWP7
                     wupdater.Load();
                 else
                     wupdater.GetUpdates();
+            GoToStateDefault();
+        }
 
+        public void GoToStateDefault()
+        {
+            Pontinhos.IsVisible = false;
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).IsEnabled = true;     
         }
 
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
@@ -124,15 +131,13 @@ namespace CardapioWP7
                 if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)
                     pivot.SelectedItem = aba;
             }
-            Pontinhos.IsVisible = false;
-            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).IsEnabled = true;            
         }
 
         private void BotaoAtualizar_Click(object sender, System.EventArgs e)
         {
             (sender as ApplicationBarIconButton).IsEnabled = false;
             Pontinhos.IsVisible = true;
-            wupdater.GetUpdates();
+            wupdater.GetUpdates();   
         }
     }
 }

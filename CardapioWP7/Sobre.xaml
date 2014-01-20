@@ -23,7 +23,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Cardápio Universitário UFRN" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#DEFFFFFF"/>
-            <TextBlock Text="sobre" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#DEFFFFFF"/>
+            <TextBlock Text="sobre" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource PhoneForegroundBrush}"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" Grid.Row="1" Margin="12,0">
         	<TextBlock x:Name="Versao" Margin="0,0,-332,0" TextWrapping="Wrap" Text="" FontSize="{StaticResource PhoneFontSizeNormal}" VerticalAlignment="Center">

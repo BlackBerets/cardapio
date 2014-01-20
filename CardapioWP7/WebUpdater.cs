@@ -56,9 +56,7 @@ namespace CardapioWP7
             }
             else
                 ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
-
-
-
+            this.ParentPage.GoToStateDefault();
         }
 
         /// <summary>
@@ -103,6 +101,7 @@ namespace CardapioWP7
                 ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
             else
                 this.ParentPage.LoadInfo();
+            this.ParentPage.GoToStateDefault();
         }
     }
 }

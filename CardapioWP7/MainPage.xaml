@@ -13,8 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    SupportedOrientations="Portrait"  Orientation="Portrait" shell:SystemTray.Opacity="0.0" shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="StoryboardOut">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="pivot">
@@ -144,14 +143,14 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" IsVisible="True" ForegroundColor="Black" BackgroundColor="White">
             <shell:ApplicationBar.MenuItems>
-            	<shell:ApplicationBarMenuItem Text="Sobre" Click="ApplicationBarMenuItem_Click" d:IsHidden="True"/>
+            	<shell:ApplicationBarMenuItem Text="Sobre..." Click="ApplicationBarMenuItem_Click" d:IsHidden="True"/>
             </shell:ApplicationBar.MenuItems>
-        	<shell:ApplicationBarIconButton x:Name="BotaoAtualizar" IconUri="/Assets/AppBar/appbar.refresh.rest.png" IsEnabled="False" Text="Atualizar" Click="BotaoAtualizar_Click"/>
+        	<shell:ApplicationBarIconButton x:Name="BotaoAtualizar" IconUri="/Assets/AppBar/appbar.refresh.rest.png" IsEnabled="True" Text="Atualizar" Click="BotaoAtualizar_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
 <!--LayoutRoot is the root grid where all page content is placed-->
-	<Grid x:Name="LayoutRoot">
+	<Grid x:Name="LayoutRoot" Margin="0" Background="#FF3F93C6">
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Name="VisualStateGroup"/>
 		</VisualStateManager.VisualStateGroups>
@@ -161,7 +160,7 @@
 		<!--Pivot Control-->
 		<!--Pivot Control-->
         	<!--Pivot Control-->
-		<controls:Pivot x:Name="pivot" Title="Cardápio Universitário UFRN" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+		<controls:Pivot x:Name="pivot" Title="Cardápio Restaurante Universitário UFRN" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Margin="0,15,0,0">
 			<controls:Pivot.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="#FF3F94C7" Offset="0.2"/>
