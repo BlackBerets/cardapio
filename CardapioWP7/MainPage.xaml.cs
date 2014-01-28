@@ -55,23 +55,23 @@ namespace CardapioWP7
             (ApplicationBar.Buttons[0] as ApplicationBarIconButton).IsEnabled = true;     
         }
 
+        private void BotaoAtualizar_Click(object sender, System.EventArgs e)
+        {
+            (sender as ApplicationBarIconButton).IsEnabled = false;
+            Pontinhos.IsVisible = true;
+            wupdater.GetUpdates();
+        }
+
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
         {
             StoryboardOut.Begin();
             StoryboardOut.Completed += new System.EventHandler(StoryboardOut_Completed);
+            //NavigationService.Navigate(new Uri("/Sobre.xaml", UriKind.Relative));
         }
 
         private void StoryboardOut_Completed(object sender, System.EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Sobre.xaml", UriKind.Relative));
-        }
-
-        private bool AntesDoAlmoco()
-        {
-            bool manha = DateTime.Now.TimeOfDay < new DateTime(2000, 1, 1, 14, 0, 0).TimeOfDay;
-            bool noite = DateTime.Now.TimeOfDay < new DateTime(2000, 1, 1, 19, 0, 0).TimeOfDay;
-            return manha || noite;
-
         }
 
         /// <summary>
@@ -131,13 +131,6 @@ namespace CardapioWP7
                 if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)
                     pivot.SelectedItem = aba;
             }
-        }
-
-        private void BotaoAtualizar_Click(object sender, System.EventArgs e)
-        {
-            (sender as ApplicationBarIconButton).IsEnabled = false;
-            Pontinhos.IsVisible = true;
-            wupdater.GetUpdates();   
         }
     }
 }
