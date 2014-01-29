@@ -277,7 +277,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             html = html.Replace("&Ecirc;", "Ê");
 
             // Letra I
-            html = html.Replace("&Iacute;", "í");
+            html = html.Replace("&iacute;", "í");
             html = html.Replace("&Iacute;", "Í");
 
             // Letra O
@@ -287,6 +287,11 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             html = html.Replace("&Otilde;", "Õ");
             html = html.Replace("&Oacute;", "Ó");
             html = html.Replace("&Ocirc;", "Ô");
+
+            // Letra U
+            html = html.Replace("&uacute;", "ú");
+            html = html.Replace("&Uacute;", "Ú");
+            
 
             // Letra C
             html = html.Replace("&ccedil;", "ç");
