@@ -80,6 +80,7 @@ namespace CardapioWP7
 
                 using (StreamWriter PeriodoWriter = new StreamWriter(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
                     PeriodoWriter.Write(this.Periodo);
+                this.ParentPage.GoToStateDefault();
             }
         }
 
@@ -100,6 +101,7 @@ namespace CardapioWP7
                 ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
             else
                 this.ParentPage.LoadInfo();
+            this.ParentPage.GoToStateDefault();
         }
     }
 }

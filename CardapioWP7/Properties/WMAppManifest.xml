@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{4bcd74b3-b472-45ce-9fea-379e71687935}" Title="Cardápio RU UFRN" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Thiago Jedi" Description="Cardápio do Restaurante Universitário da UFRN.&#xD;&#xA;&#xD;&#xA;Acesse offline quais os pratos da semana no R.U." Publisher="Thiago Jedi">
+  <App xmlns="" ProductID="{4bcd74b3-b472-45ce-9fea-379e71687935}" Title="Cardápio RU UFRN" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Thiago Jedi" Description="Cardápio do Restaurante Universitário da UFRN.&#xD;&#xA;&#xD;&#xA;Com esse aplicativo você pode:&#xD;&#xA;- Ver quais os pratos de cada dia da semana atual offline.&#xD;&#xA;- Verificar quais os horários das refeições." Publisher="Thiago Jedi">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
