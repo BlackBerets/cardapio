@@ -36,13 +36,21 @@ namespace CardapioWP7
             SystemTray.SetProgressIndicator(this, Pontinhos);
 
             FirstLoad = true;
+
+            NavigationInTransition navigateInTransition = new NavigationInTransition();
+            navigateInTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardIn };
+            navigateInTransition.Forward = new TurnstileTransition { Mode = TurnstileTransitionMode.ForwardIn };
+
+            NavigationOutTransition navigateOutTransition = new NavigationOutTransition();
+            navigateOutTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardOut };
+            navigateOutTransition.Forward = new TurnstileTransition { Mode = TurnstileTransitionMode.ForwardOut };
+            TransitionService.SetNavigationInTransition(this, navigateInTransition);
+            TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            StoryboardIn.Begin();
-
             if (FirstLoad)
             {
                 Pontinhos.IsVisible = true;

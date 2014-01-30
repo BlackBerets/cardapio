@@ -28,10 +28,8 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
 <!--LayoutRoot is the root grid where all page content is placed-->
+	<!--LayoutRoot is the root grid where all page content is placed-->
 	<Grid x:Name="LayoutRoot" Margin="0" Background="#FF3F93C6">
-		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup x:Name="VisualStateGroup"/>
-		</VisualStateManager.VisualStateGroups>
 		<Grid.Projection>
 			<PlaneProjection/>
 		</Grid.Projection>
@@ -46,7 +44,7 @@
 				</LinearGradientBrush>
 			</controls:Pivot.Background>
 			<controls:Pivot.Projection>
-				<PlaneProjection CenterOfRotationX="0" CenterOfRotationY="0"/>
+				<PlaneProjection CenterOfRotationY="0"/>
 			</controls:Pivot.Projection>
 			<controls:Pivot.RenderTransform>
 				<CompositeTransform/>

@@ -19,6 +19,16 @@ namespace CardapioWP7
             InitializeComponent();
 
             Versao.Text = "Versão " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            NavigationInTransition navigateInTransition = new NavigationInTransition();
+            navigateInTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardIn };
+            navigateInTransition.Forward = new TurnstileTransition { Mode = TurnstileTransitionMode.ForwardIn };
+
+            NavigationOutTransition navigateOutTransition = new NavigationOutTransition();
+            navigateOutTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardOut };
+            navigateOutTransition.Forward = new TurnstileTransition { Mode = TurnstileTransitionMode.ForwardOut };
+            TransitionService.SetNavigationInTransition(this, navigateInTransition);
+            TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
