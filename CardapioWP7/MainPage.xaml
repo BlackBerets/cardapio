@@ -14,42 +14,14 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait" shell:SystemTray.Opacity="0.0" shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.Resources>
-        <Storyboard x:Name="StoryboardOut">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="90"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimation Duration="0:0:0.3" To="0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="pivot" d:IsOptimized="True"/>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimation Duration="0:0:0.3" To="0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationZ)" Storyboard.TargetName="pivot" d:IsOptimized="True"/>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationY)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Name="StoryboardIn">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="-90"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pivot">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
+        
 	</phone:PhoneApplicationPage.Resources>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" IsVisible="True" ForegroundColor="Black" BackgroundColor="White">
             <shell:ApplicationBar.MenuItems>
-            	<shell:ApplicationBarMenuItem Text="Sobre..." Click="ApplicationBarMenuItem_Click" d:IsHidden="True"/>
+            	<shell:ApplicationBarMenuItem IsEnabled="True" Text="Horários" Click="MenuItemHorarios_Click"/>
+            	<shell:ApplicationBarMenuItem IsEnabled="True" Text="Sobre" Click="MenuItemSobre_Click"/>
             </shell:ApplicationBar.MenuItems>
         	<shell:ApplicationBarIconButton x:Name="BotaoAtualizar" IconUri="/Assets/AppBar/appbar.refresh.rest.png" IsEnabled="True" Text="Atualizar" Click="BotaoAtualizar_Click"/>
         </shell:ApplicationBar>
@@ -66,7 +38,7 @@
 		<!--Pivot Control-->
 		<!--Pivot Control-->
         	<!--Pivot Control-->
-		<controls:Pivot x:Name="pivot" Title="Cardápio Restaurante Universitário UFRN" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Margin="0,15,0,0">
+		<controls:Pivot x:Name="pivot" Title="{StaticResource AppName}" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Margin="0,15,0,0" Foreground="White">
 			<controls:Pivot.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="#FF3F94C7" Offset="0.2"/>

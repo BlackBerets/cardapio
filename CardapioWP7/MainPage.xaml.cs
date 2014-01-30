@@ -20,6 +20,7 @@ namespace CardapioWP7
     {
         public WebUpdater wupdater { get; private set; }
         private ProgressIndicator Pontinhos;
+        public bool FirstLoad;
 
         // Constructor
         public MainPage()
@@ -33,6 +34,8 @@ namespace CardapioWP7
             Pontinhos.Text = "Carregando...";
             Pontinhos.IsIndeterminate = true;
             SystemTray.SetProgressIndicator(this, Pontinhos);
+
+            FirstLoad = true;
         }
 
         // Load data for the ViewModel Items
@@ -40,12 +43,16 @@ namespace CardapioWP7
         {
             StoryboardIn.Begin();
 
-            Pontinhos.IsVisible = true;
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-                if (isf.FileExists("pratos.txt"))
-                    wupdater.Load();
-                else
-                    wupdater.GetUpdates();
+            if (FirstLoad)
+            {
+                Pontinhos.IsVisible = true;
+                using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
+                    if (isf.FileExists("pratos.txt"))
+                        wupdater.Load();
+                    else
+                        wupdater.GetUpdates();
+                FirstLoad = false;
+            }
             GoToStateDefault();
         }
 
@@ -62,16 +69,14 @@ namespace CardapioWP7
             wupdater.GetUpdates();
         }
 
-        private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
-        {
-            StoryboardOut.Begin();
-            StoryboardOut.Completed += new System.EventHandler(StoryboardOut_Completed);
-            //NavigationService.Navigate(new Uri("/Sobre.xaml", UriKind.Relative));
-        }
-
-        private void StoryboardOut_Completed(object sender, System.EventArgs e)
+        private void MenuItemSobre_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Sobre.xaml", UriKind.Relative));
+        }
+
+        private void MenuItemHorarios_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Horarios.xaml", UriKind.Relative));
         }
 
         /// <summary>
@@ -123,7 +128,7 @@ namespace CardapioWP7
                 jantar.Text = Dia.Jantar;
                 stack_refeicoes.Children.Add(jantar);
 
-                aba.Style = (Style)App.Current.Resources["AbaDiaDaSemana"];
+                sv_dia.Style = (Style)App.Current.Resources["AbaDiaDaSemana"];
                 aba.Content = sv_dia;
 
                 pivot.Items.Add(aba);
@@ -132,5 +137,7 @@ namespace CardapioWP7
                     pivot.SelectedItem = aba;
             }
         }
+
+        
     }
 }
