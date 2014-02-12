@@ -32,6 +32,7 @@
         		</TextBlock.Foreground>
         	</TextBlock>
         	<TextBlock Margin="0,12" TextWrapping="Wrap" Text="Desenvolvido por Black Beret Software"/>
+        	<TextBlock TextWrapping="Wrap" Text="Contato: jedi@lcc.ufrn.br" Margin="0,12"/>
         	<TextBlock TextWrapping="Wrap" Text="Licenciado sob a licença GPL 3.0" Margin="0,12"/>
         	<TextBlock TextWrapping="Wrap" Text="O código-fonte pode ser encontrado aqui:" Margin="0,12"/>
         	<TextBlock x:Name="CodeLink" TextWrapping="Wrap" Text="http://github.com/blackberets/cardapio" Margin="0,12" TextDecorations="Underline" Tap="TextBlock_Tap"/>

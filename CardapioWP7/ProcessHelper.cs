@@ -6,6 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace CardapioWP7
 {
+    enum Refeicao
+    {
+        Desjejum,
+        Almoço,
+        Jantar,
+        None
+    }
+
     class ProcessHelper
     {
         public List<Dia> Semana { get; private set; }
@@ -175,7 +183,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
 
             ProcessDias(_periodo);
 
-            ProcessPratos(_info);            
+            ProcessPratos(_info);
         }
 
         private void ProcessDias(string _periodo)
@@ -196,44 +204,49 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             }
         }
 
-
-        enum Refeicao
-        {
-            Almoco,
-            Jantar,
-            Desjejum,
-            None
-        }
-
         private void ProcessPratos(string _info)
         {
             string Info = _info;
 
+            Regex desjejum = new Regex(@"DESJEJUM");
             Regex almoco = new Regex(@"ALMO&Ccedil;O");
             Regex jantar = new Regex(@"JANTAR");
-            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;]+\s?)+)");
+            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;/]+\s?)+)");
+            Regex data = new Regex(@"\d+\/\d+\/\d+");
 
-            
+
 
             int dia = -1;
+            StringBuilder sb_desjejum = new StringBuilder();
             StringBuilder sb_almoco = new StringBuilder();
             StringBuilder sb_jantar = new StringBuilder();
             StringBuilder sb_atual = null;
 
-            var lines = Info.Split(new string[] { Environment.NewLine, "<br>"}, StringSplitOptions.RemoveEmptyEntries);
+            var lines = Info.Split(new string[] { Environment.NewLine, "<br>" }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var line in lines)
             {
-                if (almoco.IsMatch(line))
+                if (data.IsMatch(line))
                 {
-                    if (0 <= dia)
+                    if (dia >= 0)
                     {
+                        Semana[dia].Desjejum = sb_desjejum.ToString();
+                        sb_desjejum = new StringBuilder();
                         Semana[dia].Almoco = sb_almoco.ToString();
                         sb_almoco = new StringBuilder();
                         Semana[dia].Jantar = sb_jantar.ToString();
                         sb_jantar = new StringBuilder();
                     }
                     dia++;
+                    if (dia > 6)
+                        break;
+                }
+                if (desjejum.IsMatch(line))
+                {
+                    sb_atual = sb_desjejum;
+                }
+                else if (almoco.IsMatch(line))
+                {
                     sb_atual = sb_almoco;
                 }
                 else if (jantar.IsMatch(line))
@@ -242,20 +255,22 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
                 }
                 else
                 {
-                        string linha_prato = prato.Match(line).Groups["prato"].ToString();
+                    string linha_prato = prato.Match(line).Groups["prato"].ToString();
 
-                        if (!String.IsNullOrWhiteSpace(linha_prato))
-                        {
-                            ReplaceHTML(ref linha_prato);
+                    if (!String.IsNullOrWhiteSpace(linha_prato))
+                    {
+                        ReplaceHTML(ref linha_prato);
 
-                            sb_atual.AppendLine(linha_prato);
-                        }
+                        sb_atual.AppendLine(linha_prato);
+                    }
                 }
+
 
             }
 
-            Semana[dia].Almoco = sb_almoco.ToString();
-            Semana[dia].Jantar = sb_jantar.ToString();
+            //Semana[dia].Desjejum = sb_desjejum.ToString();
+            //Semana[dia].Almoco = sb_almoco.ToString();
+            //Semana[dia].Jantar = sb_jantar.ToString();
         }
 
         private void ReplaceHTML(ref string html)
@@ -291,11 +306,14 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             // Letra U
             html = html.Replace("&uacute;", "ú");
             html = html.Replace("&Uacute;", "Ú");
-            
+
 
             // Letra C
             html = html.Replace("&ccedil;", "ç");
             html = html.Replace("&Ccedil;", "Ç");
+
+            // Apostofo
+            html = html.Replace("&acute;", "'");
         }
     }
 }

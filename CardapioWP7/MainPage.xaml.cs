@@ -16,6 +16,8 @@ using Microsoft.Phone.Shell;
 
 namespace CardapioWP7
 {
+    
+
     public partial class MainPage : PhoneApplicationPage
     {
         public WebUpdater wupdater { get; private set; }
@@ -67,7 +69,7 @@ namespace CardapioWP7
         public void GoToStateDefault()
         {
             Pontinhos.IsVisible = false;
-            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).IsEnabled = true;     
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).IsEnabled = true;
         }
 
         private void BotaoAtualizar_Click(object sender, System.EventArgs e)
@@ -115,26 +117,17 @@ namespace CardapioWP7
 
                 TextBlock data = new TextBlock();
                 data.Text = string.Format("Dia {0}/{1}", Dia.Data.Day, Dia.Data.Month);
-                //data.FontSize = 12;
                 stack_refeicoes.Children.Add(data);
 
-                TextBlock title_almoco = new TextBlock();
-                title_almoco.Text = "Almoço";
-                title_almoco.FontSize = 32;
-                stack_refeicoes.Children.Add(title_almoco);
+                if (!String.IsNullOrEmpty(Dia.Desjejum))
+                    AdicionaRefeicao(Dia, stack_refeicoes, Refeicao.Desjejum);
 
-                TextBlock almoco = new TextBlock();
-                almoco.Text = Dia.Almoco;
-                stack_refeicoes.Children.Add(almoco);
+                if (!String.IsNullOrEmpty(Dia.Almoco))
+                    AdicionaRefeicao(Dia, stack_refeicoes, Refeicao.Almoço);
 
-                TextBlock title_jantar = new TextBlock();
-                title_jantar.Text = "Jantar";
-                title_jantar.FontSize = 32;
-                stack_refeicoes.Children.Add(title_jantar);
+                if (!String.IsNullOrEmpty(Dia.Jantar))
+                    AdicionaRefeicao(Dia, stack_refeicoes, Refeicao.Jantar);
 
-                TextBlock jantar = new TextBlock();
-                jantar.Text = Dia.Jantar;
-                stack_refeicoes.Children.Add(jantar);
 
                 sv_dia.Style = (Style)App.Current.Resources["AbaDiaDaSemana"];
                 aba.Content = sv_dia;
@@ -146,6 +139,35 @@ namespace CardapioWP7
             }
         }
 
-        
+        private static void AdicionaRefeicao(CardapioWP7.Dia Dia, StackPanel stack_refeicoes, Refeicao refeicao)
+        {
+            TextBlock title = new TextBlock();
+            title.FontSize = 32;
+
+            TextBlock pratos = new TextBlock();
+
+            switch (refeicao)
+            {
+                case Refeicao.Desjejum:
+                    title.Text = "Desjejum";
+                    pratos.Text = Dia.Desjejum;
+                    break;
+                case Refeicao.Almoço:
+                    title.Text = "Almoço";
+                    pratos.Text = Dia.Almoco;
+                    break;
+                case Refeicao.Jantar:
+                    title.Text = "Jantar";
+                    pratos.Text = Dia.Jantar;
+                    break;
+                default:
+                    break;
+            }
+
+            stack_refeicoes.Children.Add(title);
+            stack_refeicoes.Children.Add(pratos);
+        }
+
+
     }
 }

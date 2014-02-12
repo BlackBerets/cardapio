@@ -18,7 +18,7 @@ namespace CardapioWP7
         {
             InitializeComponent();
 
-            Versao.Text = "Versão 1.0";
+            Versao.Text = "Versão 1.0.1";
 
             NavigationInTransition navigateInTransition = new NavigationInTransition();
             navigateInTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardIn };
