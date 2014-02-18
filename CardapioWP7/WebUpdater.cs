@@ -55,7 +55,10 @@ namespace CardapioWP7
                 this.SaveToIsolatedStorage();
             }
             else
+            {
                 ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
+                ParentPage.GoToStateDefault();
+            }
 
         }
 
