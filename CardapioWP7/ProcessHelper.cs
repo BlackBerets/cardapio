@@ -23,7 +23,7 @@ namespace CardapioWP7
             Semana = new List<Dia>();
         }
 
-        public void ProcessInfo(string _info, string _periodo)
+        public void ProcessInfo(string _info, string _periodo = "")
         {
             #region Exemplo de Entrada
             /*  Exemplo de entrada
@@ -181,7 +181,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
              */
             #endregion
 
-            ProcessDias(_periodo);
+            //ProcessDias(_periodo);
 
             ProcessPratos(_info);
         }
@@ -212,7 +212,7 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             Regex almoco = new Regex(@"ALMO&Ccedil;O");
             Regex jantar = new Regex(@"JANTAR");
             Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;/]+\s?)+)");
-            Regex data = new Regex(@"\d+\/\d+\/\d+");
+            Regex regex_data = new Regex(@"\d+\/\d+\/\d+");
 
 
 
@@ -221,25 +221,31 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
             StringBuilder sb_almoco = new StringBuilder();
             StringBuilder sb_jantar = new StringBuilder();
             StringBuilder sb_atual = null;
+            DateTime data = new DateTime();
 
             var lines = Info.Split(new string[] { Environment.NewLine, "<br>" }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var line in lines)
             {
-                if (data.IsMatch(line))
+                if (regex_data.IsMatch(line))
                 {
                     if (dia >= 0)
                     {
-                        Semana[dia].Desjejum = sb_desjejum.ToString();
+                        var new_day = new Dia(data);
+                        new_day.Desjejum = sb_desjejum.ToString();
                         sb_desjejum = new StringBuilder();
-                        Semana[dia].Almoco = sb_almoco.ToString();
+                        new_day.Almoco = sb_almoco.ToString();
                         sb_almoco = new StringBuilder();
-                        Semana[dia].Jantar = sb_jantar.ToString();
+                        new_day.Jantar = sb_jantar.ToString();
                         sb_jantar = new StringBuilder();
+
+                        Semana.Add(new_day);
                     }
                     dia++;
-                    if (dia > 6)
+                    data = DateTime.Parse(regex_data.Matches(line)[0].ToString());
+                    if (6 < dia)
                         break;
+
                 }
                 if (desjejum.IsMatch(line))
                 {

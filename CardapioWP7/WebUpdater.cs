@@ -43,8 +43,6 @@ namespace CardapioWP7
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(e.Result);
 
-                this.Periodo = doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].InnerHtml;
-
                 doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style2']")[0].Remove();
                 doc.DocumentNode.SelectNodes("//td[@class='verdana11']/span[@class='style3']")[0].Remove();
 
@@ -82,8 +80,6 @@ namespace CardapioWP7
                 using (StreamWriter PratosWriter = new StreamWriter(new IsolatedStorageFileStream("pratos.txt", FileMode.OpenOrCreate, Storage)))
                     PratosWriter.Write(this.Info);
 
-                using (StreamWriter PeriodoWriter = new StreamWriter(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
-                    PeriodoWriter.Write(this.Periodo);
                 this.ParentPage.GoToStateDefault();
             }
         }
@@ -97,11 +93,9 @@ namespace CardapioWP7
             {
                 using (StreamReader PratosReader = new StreamReader(new IsolatedStorageFileStream("pratos.txt", FileMode.OpenOrCreate, Storage)))
                     this.Info = PratosReader.ReadToEnd();
-                using (StreamReader PeriodoReader = new StreamReader(new IsolatedStorageFileStream("periodo.txt", FileMode.OpenOrCreate, Storage)))
-                    this.Periodo = PeriodoReader.ReadToEnd();
             }
 
-            if (string.IsNullOrEmpty(this.Info) || string.IsNullOrEmpty(this.Periodo))
+            if (string.IsNullOrEmpty(this.Info))
                 ParentPage.Alert("Não foi possível carregar as informações. Por favor conecte-se à internet e tente novamente.");
             else
                 this.ParentPage.LoadInfo();
