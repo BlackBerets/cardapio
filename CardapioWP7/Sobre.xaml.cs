@@ -18,7 +18,7 @@ namespace CardapioWP7
         {
             InitializeComponent();
 
-            Versao.Text = "Versão 1.0.2.2";
+            Versao.Text = "Versão 1.0.3.0";
 
             NavigationInTransition navigateInTransition = new NavigationInTransition();
             navigateInTransition.Backward = new TurnstileTransition { Mode = TurnstileTransitionMode.BackwardIn };
@@ -34,7 +34,7 @@ namespace CardapioWP7
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             var wbt = new WebBrowserTask();
-            wbt.Uri = new Uri("https://github.com/BlackBerets/Cardapio");
+            wbt.Uri = new Uri("https://blackberets.github.io/Cardapio");
             wbt.Show();
         }
 
