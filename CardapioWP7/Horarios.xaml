@@ -1,0 +1,58 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="CardapioWP7.Horarios"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="horários" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Segunda à Sexta:" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,42,0,0" TextWrapping="Wrap" Text="Desjejum" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,42,10,0" TextWrapping="Wrap" Text="06h30 - 08h30" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,74,0,0" TextWrapping="Wrap" Text="Almoço" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,74,10,0" TextWrapping="Wrap" Text="11h - 13h30" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,106,0,0" TextWrapping="Wrap" Text="Jantar" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,106,10,0" TextWrapping="Wrap" Text="17h - 19h" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text="Sábados:" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,170,0,0" TextWrapping="Wrap" Text="Desjejum" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,170,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right" Text="07h - 08h"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,202,0,0" TextWrapping="Wrap" Text="Almoço" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,202,10,0" TextWrapping="Wrap" Text="11h - 13h" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,234,0,0" TextWrapping="Wrap" Text="Jantar" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,234,9,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right" Text="17h - 18h"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,266,0,0" TextWrapping="Wrap" Text="Domingos e Feriados:" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,298,0,0" TextWrapping="Wrap" Text="Desjejum" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,298,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right" Text="07h - 08h"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,330,0,0" TextWrapping="Wrap" Text="Almoço" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,330,10,0" TextWrapping="Wrap" Text="11h - 12h" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Right"/>
+            <TextBlock Margin="10,466,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="{StaticResource PhoneFontSizeSmall}">
+            	<Run Text="Fonte: "/>
+            	<LineBreak/>
+            	<Run Text="Resolução 021/2012-CONSAD, de 21 / 06 / 2012"/>
+            </TextBlock>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

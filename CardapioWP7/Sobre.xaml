@@ -31,11 +31,10 @@
         			<SolidColorBrush Color="{StaticResource PhoneForegroundColor}"/>
         		</TextBlock.Foreground>
         	</TextBlock>
-        	<TextBlock Margin="0,12" TextWrapping="Wrap" Text="Desenvolvido por Black Beret Software"/>
-        	<TextBlock TextWrapping="Wrap" Text="Contato: jedi@lcc.ufrn.br" Margin="0,12"/>
+            <TextBlock Margin="0,12" TextWrapping="Wrap" Text="Desenvolvido por Black Beret Software" TextDecorations="Underline" Tap="TextBlock_Tap"/>
+        	<TextBlock TextWrapping="Wrap" Text="Contato: thiagojedi@live.it" Margin="0,12"/>
         	<TextBlock TextWrapping="Wrap" Text="Licenciado sob a licença GPL 3.0" Margin="0,12"/>
-        	<TextBlock TextWrapping="Wrap" Text="O código-fonte pode ser encontrado aqui:" Margin="0,12"/>
-        	<TextBlock x:Name="CodeLink" TextWrapping="Wrap" Text="http://github.com/blackberets/cardapio" Margin="0,12" TextDecorations="Underline" Tap="TextBlock_Tap"/>
+        	
         	<TextBlock TextWrapping="Wrap" Text="As informações do cardápio são retiradas da seguinte página:" Margin="0,12"/>
         	<TextBlock x:Name="SaeLink" TextWrapping="Wrap" Text="http://www.sae.ufrn.br/" Margin="0,12" TextDecorations="Underline" Tap="SaeLink_Tap"/>
         	<TextBlock TextWrapping="Wrap" Text="Mesmo sendo de uma fonte oficial, os pratos servidos podem sofrer alterações sem aviso prévio." Margin="0,12"/>

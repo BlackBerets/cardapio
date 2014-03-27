@@ -135,7 +135,9 @@ namespace CardapioWP7
                 pivot.Items.Add(aba);
 
                 if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)
+                {
                     pivot.SelectedItem = aba;
+                }
             }
         }
 
