@@ -208,10 +208,10 @@ Arroz, Feij&atilde;o, Macaxeira, bl&aacute; bl&aacute; bl&aacute; nonononon onno
         {
             string Info = _info;
 
-            Regex desjejum = new Regex(@"DESJEJUM");
-            Regex almoco = new Regex(@"ALMO&Ccedil;O");
-            Regex jantar = new Regex(@"JANTAR");
-            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;/]+\s?)+)");
+            Regex desjejum = new Regex(@"DESJEJUM", RegexOptions.IgnoreCase);
+            Regex almoco = new Regex(@"ALMO&Ccedil;O", RegexOptions.IgnoreCase);
+            Regex jantar = new Regex(@"JANTAR", RegexOptions.IgnoreCase);
+            Regex prato = new Regex(@"^(-\s?)?(?<prato>([A-Za-z&;/\'\(\)]+\s?)+)", RegexOptions.IgnoreCase);
             Regex regex_data = new Regex(@"\d+\/\d+\/\d+");
 
 

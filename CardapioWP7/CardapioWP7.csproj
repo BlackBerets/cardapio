@@ -115,6 +115,7 @@
     <None Include="CardapioWP7_2014_01_30_11_59_54.sap" />
     <None Include="CardapioWP7_2014_01_30_12_02_29.sap" />
     <None Include="CardapioWP7_2014_01_30_12_08_32.sap" />
+    <None Include="CardapioWP7_2014_03_30_11_24_00.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
