@@ -13,10 +13,11 @@ using Microsoft.Phone.Controls;
 using System.IO.IsolatedStorage;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace CardapioWP7
 {
-    
+
 
     public partial class MainPage : PhoneApplicationPage
     {
@@ -95,7 +96,7 @@ namespace CardapioWP7
         /// <param name="msg">Mensagem a ser mostrada</param>
         public void Alert(string msg)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(msg));
+            MessageBox.Show(msg);
         }
 
         internal void LoadInfo()
@@ -107,16 +108,20 @@ namespace CardapioWP7
             pivot.Items.Clear();
             foreach (var Dia in ph.Semana)
             {
-                PivotItem aba = new PivotItem();
-                aba.Header = Dia.NomeDoDia();
+                PivotItem aba = new PivotItem
+                {
+                    Header = Dia.NomeDoDia()
+                };
 
                 ScrollViewer sv_dia = new ScrollViewer();
 
                 StackPanel stack_refeicoes = new StackPanel();
                 sv_dia.Content = stack_refeicoes;
 
-                TextBlock data = new TextBlock();
-                data.Text = string.Format("Dia {0}/{1}", Dia.Data.Day, Dia.Data.Month);
+                TextBlock data = new TextBlock
+                {
+                    Text = string.Format("Dia {0}/{1}", Dia.Data.Day, Dia.Data.Month)
+                };
                 stack_refeicoes.Children.Add(data);
 
                 if (!String.IsNullOrEmpty(Dia.Desjejum))
@@ -137,9 +142,31 @@ namespace CardapioWP7
                 if (Dia.Data.DayOfWeek == DateTime.Today.DayOfWeek)
                 {
                     pivot.SelectedItem = aba;
+
+                    AdControl ad = new AdControl("74e1a034-5680-4210-808c-52463e8bbcf1", "162701", true)
+                    {
+                        IsAutoCollapseEnabled = true,
+                        Margin = new Thickness(12),
+                        Width = 300,
+                        Height = 50
+                    };
+
+#if DEBUG
+                    ad.ErrorOccurred += ad_ErrorOccurred;
+#endif
+
+                    stack_refeicoes.Children.Add(ad);
                 }
             }
         }
+
+#if DEBUG
+        void ad_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+
+            MessageBox.Show(e.Error.Message);
+        }
+#endif
 
         private static void AdicionaRefeicao(CardapioWP7.Dia Dia, StackPanel stack_refeicoes, Refeicao refeicao)
         {
