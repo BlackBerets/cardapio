@@ -3,6 +3,8 @@ Cardápio Restaurante Universitario UFRN
 
 Aplicativo do Cardápio do Restaurante Universitário da UFRN para Windows Phone
 
+Do ponto de vista BlackBerets, esse projeto serve como estudo e futura referência para estruturação de aplicativos móveis, a ser utilizado pelo time Mobile.
+
 Versão 1.0.3
 ----
 - Atualização de contato na página "sobre"
